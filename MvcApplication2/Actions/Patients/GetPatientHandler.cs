@@ -7,6 +7,7 @@ using MvcApplication2.Models;
 
 namespace MvcApplication2.Actions.Patients
 {
+    //interesting
     public class GetPatientHandler : IActionHandler
     {
         GetPatientRequest request;

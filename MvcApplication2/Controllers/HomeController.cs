@@ -7,6 +7,7 @@ using MvcApplication2.Actions.Patients;
 
 namespace MvcApplication2.Controllers
 {
+    //interesting
     public class HomeController : Controller
     {
         public ActionResult Index()
