@@ -2,18 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
+using Ninject;
 
 namespace MvcApplication2.Models
 {
     public class PatientDataAccess : IPatientDataAccess
     {
+        IConnectionInformation conn;
+
+        [Inject] 
+        public PatientDataAccess(IConnectionInformation conn)
+        {
+            this.conn = conn;
+        }
+
         public Patient GetPatient(int patientID)
         {
-            return new Patient
+            using (var dbConnection = new SqlConnection(conn.ConnectString))
             {
-                FirstName = "first",
-                LastName = "last"
-            };
+                dbConnection.Open();
+                return dbConnection.Query<Patient>("select PatientID, FirstName, LastName from Patient").Single();
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MvcApplication2.Models
 {
-    interface IPatientDataAccess
+    public interface IPatientDataAccess
     {
         Patient GetPatient(int patientID);
     }

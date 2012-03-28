@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject;
+using System.Reflection;
+using MvcApplication2.IoC;
+using MvcApplication2.Models;
+using MvcApplication2.Controllers;
 
 namespace MvcApplication2
 {
@@ -12,6 +17,8 @@ namespace MvcApplication2
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        public IKernel kernel;
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -28,9 +35,11 @@ namespace MvcApplication2
             );
 
         }
-
+        
         protected void Application_Start()
         {
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(KernelInjection.Get()));
+         
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

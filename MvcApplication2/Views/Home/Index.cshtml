@@ -11,6 +11,10 @@
         this.LastName = null;
     }
 
+    $.ajaxSetup({
+        "error": function (XMLHttpRequest, textStatus, errorThrown) { alert(errorThrown); }
+    });
+
     $(document).ready(function () {
         $.getJSON('Home/GetPatient', { patientID: 5 }, function (data) {
             var patient = data.Patient;

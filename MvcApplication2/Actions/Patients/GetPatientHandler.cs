@@ -4,20 +4,19 @@ using System.Linq;
 using System.Web;
 using MvcApplication2.Actions.Patients;
 using MvcApplication2.Models;
+using Ninject;
 
 namespace MvcApplication2.Actions.Patients
-{
-    //interesting
+{   
     public class GetPatientHandler : IActionHandler
-    {
-        GetPatientRequest request;
+    {       
         IPatientDataAccess patientDataAccess;
-
-        // PatientDataAccess would actually use injection
-        public GetPatientHandler(GetPatientRequest request, PatientDataAccess patientDataAccess)
-        {
-            this.request = request;
+        GetPatientRequest request { get; set; }
+       
+        public GetPatientHandler(IPatientDataAccess patientDataAccess, GetPatientRequest request)
+        {           
             this.patientDataAccess = patientDataAccess;
+            this.request = request;
         }
 
         public IActionResult Execute()
