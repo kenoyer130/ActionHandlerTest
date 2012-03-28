@@ -16,7 +16,7 @@
     });
 
     $(document).ready(function () {
-        $.getJSON('Home/GetPatient', { patientID: 5 }, function (data) {
+        $.getJSON('Home/GetPatient', { patientID: 1 }, function (data) {
             var patient = data.Patient;
             var myName = patient.FirstName + " " + patient.LastName;
 

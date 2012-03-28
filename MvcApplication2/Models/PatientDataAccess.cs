@@ -13,7 +13,7 @@ namespace MvcApplication2.Models
     {
         IConnectionInformation conn;
 
-        [Inject] 
+        [Inject]
         public PatientDataAccess(IConnectionInformation conn)
         {
             this.conn = conn;
@@ -24,7 +24,12 @@ namespace MvcApplication2.Models
             using (var dbConnection = new SqlConnection(conn.ConnectString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Patient>("select PatientID, FirstName, LastName from Patient").Single();
+                return dbConnection.Query<Patient>(@"SELECT 
+                                                        PatientID, 
+                                                        FirstName,
+                                                        LastName 
+                                                    FROM Patient 
+                                                    WHERE PatientID=@PatientID", new { PatientID = patientID }).Single();
             }
         }
     }
