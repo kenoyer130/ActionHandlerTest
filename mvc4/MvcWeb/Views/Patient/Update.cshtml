@@ -1,0 +1,19 @@
+﻿@model MvcActions.Patients.GetPatientResult
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<p><a href='Patient/Update'>Update</a><a href='Patient/Delete'>Delete</a></p>
+    <p>Patient ID : @Html.EditorFor(model => model.Patient.PatientID) </p>
+    <p>First Name : @Html.EditorFor(model => model.Patient.FirstName)</p>
+    <p>Last Name : @Html.EditorFor(model => model.Patient.LastName)</p>
+    <input type='button' value='update' />
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });       
+
+</script>
