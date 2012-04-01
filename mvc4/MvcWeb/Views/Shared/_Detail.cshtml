@@ -1,9 +1,15 @@
 ﻿@{
     ViewBag.Title = "_Detail";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
 }
+
+@{
+    var action = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    var controller = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();    
+}
+
 <div><a id='btnSave' href='#'>Save</a><a href='Index'>Cancel</a></div>
-@using (Html.BeginForm(ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() + "Action", ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString(), FormMethod.Post, new { id = "formDetails", name = "formDetails" }))
+@using (Html.BeginForm(action + "Action", controller, FormMethod.Post, new { id = "formDetails", name = "formDetails" }))
 {
     @RenderBody()   
 }

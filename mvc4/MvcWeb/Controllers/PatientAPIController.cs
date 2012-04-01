@@ -5,50 +5,50 @@ using System.Net.Http;
 using System.Web.Http;
 using MvcActions.Patients;
 using MvcIOC;
-using MvcAPI;
 using MvcModel;
+using MvcWeb.ActionRepository;
 
 
 namespace MvcWeb.Controllers
 {
     public class PatientAPIController : ApiController
     {
-        IPatientAPI patientAPI;
+        IHandlerRepository handler;
 
         public PatientAPIController()
         {
-            patientAPI = KernelInjection.GetService<IPatientAPI>();
+            handler = KernelInjection.GetService<IHandlerRepository>();
         }
 
         // GET /api/values
         public IEnumerable<Patient> Get()
         {
-            GetPatientCollectionResult result = patientAPI.GetPatientCollectionResult(new GetPatientCollectionRequest());
+            GetPatientCollectionResult result = handler.Get<GetPatientCollectionHandler,GetPatientCollectionResult>(null);
             return result.Patients.AsEnumerable();
         }
 
         // GET /api/values/5
         public GetPatientResult Get(int id)
         {
-            return patientAPI.GetPatientResult(new GetPatientRequest {  PatientID = id });
+            return handler.Get<GetPatientHandler,GetPatientResult>(new { PatientID = id });
         }
 
         // POST /api/values
         public CreatePatientResult Create(Patient patient)
         {
-            return patientAPI.CreatePatient(new CreatePatientRequest { Patient = patient });
+            return handler.Get<CreatePatientHandler,CreatePatientResult>(new { Patient = patient });
         }
 
         // PUT /api/values/5
         public UpdatePatientResult Update(Patient patient)
         {
-            return patientAPI.UpdatePatient(new UpdatePatientRequest { Patient = patient });
+            return handler.Get<UpdatePatientHandler, UpdatePatientResult>(new { Patient = patient });
         }
 
         // DELETE /api/values/5
         public DeletePatientResult Delete(int id)
         {
-            return patientAPI.DeletePatient(new DeletePatientRequest { PatientID = id });
+            return handler.Get<DeletePatientHandler, DeletePatientResult>(new { PatientID = id });
         }
     }
 }

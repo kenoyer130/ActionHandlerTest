@@ -11,7 +11,7 @@ namespace MvcActions.Patients
     {
     }
 
-    public class GetPatientCollectionResult : ActionResult
+    public class GetPatientCollectionResult : IActionResult
     {
         public IEnumerable<Patient> Patients { get; set; }
     }

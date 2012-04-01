@@ -10,6 +10,7 @@ namespace MvcActions.Patients
     public class GetPatientRequest : IActionRequest
     {
         public int PatientID { get; set; }
+        public GetPatientRequest() { }
     }
 
     public class GetPatientResult : IActionSingleResult
@@ -19,16 +20,16 @@ namespace MvcActions.Patients
     }
 
     public class GetPatientHandler : IActionHandler<GetPatientRequest, GetPatientResult>
-    {       
-        IPatientDataAccess patientDataAccess;        
-       
+    {
+        IPatientDataAccess patientDataAccess;
+
         public GetPatientHandler(IPatientDataAccess patientDataAccess)
-        {           
-            this.patientDataAccess = patientDataAccess;           
+        {
+            this.patientDataAccess = patientDataAccess;
         }
 
         public GetPatientResult Execute(GetPatientRequest request)
-        {           
+        {
             Patient patient = patientDataAccess.GetPatient(request.PatientID);
 
             return new GetPatientResult

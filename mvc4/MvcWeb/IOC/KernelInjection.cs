@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using MvcDataAccess;
-using MvcAPI;
-using MvcIOC.API;
+using MvcWeb.ActionRepository;
 
 namespace MvcIOC
 {
@@ -34,7 +33,7 @@ namespace MvcIOC
         {
             kernel.Bind<IConnectionInformation>().To<ConnectionInformation>();
             kernel.Bind<IPatientDataAccess>().To<PatientDataAccess>();
-            kernel.Bind<IPatientAPI>().To<PatientAPI>();
+            kernel.Bind<IHandlerRepository>().To<HandlerRepository>(); 
         }
     }
 }

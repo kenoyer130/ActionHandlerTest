@@ -5,18 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using MvcActions.Patients;
 using MvcIOC;
-using MvcIOC.API;
 using MvcModel;
+using MvcWeb.ActionRepository;
 
 namespace MvcWeb.Controllers
 {
     public class PatientController : Controller
     {
-        private PatientAPI patientAPI;
+        private IHandlerRepository handler;
 
-        public PatientController(PatientAPI patientAPI)
+        public PatientController(IHandlerRepository handler)
         {
-            this.patientAPI = patientAPI;
+            this.handler = handler;
         }
 
         public ActionResult Index()
@@ -31,30 +31,29 @@ namespace MvcWeb.Controllers
 
         public ActionResult Update(int id)
         {
-            return View(patientAPI.GetPatientResult(new GetPatientRequest { PatientID = id }));
+            return View(handler.Get<GetPatientHandler, GetPatientResult>(new { PatientID = id }));
         }
 
         public ActionResult Read(int id)
         {
-            return View(patientAPI.GetPatientResult(new GetPatientRequest { PatientID = id }));
+            return View(handler.Get<GetPatientHandler, GetPatientResult>(new { PatientID = id }));
         }
 
-        [HttpPost]
         public ActionResult CreateAction(Patient patient)
         {
-            int patientID = patientAPI.CreatePatient(new CreatePatientRequest { Patient = patient }).PatientID;
-            return RedirectToAction("Read", "Patient", new { patientID });
+            var newPatient = handler.Get<CreatePatientHandler, CreatePatientResult>(new { Patient = patient });
+            return RedirectToAction("Read", "Patient", new { ID = newPatient.PatientID });
         }
 
         public ActionResult UpdateAction(Patient patient)
         {
-            patientAPI.UpdatePatient(new UpdatePatientRequest { Patient = patient });
+            handler.Get<UpdatePatientHandler, UpdatePatientResult>(new { Patient = patient });
             return RedirectToAction("Read", "Patient", new { ID = patient.PatientID });
         }
 
         public ActionResult DeleteAction(int id)
         {
-            patientAPI.DeletePatient(new DeletePatientRequest { PatientID = id });
+            handler.Get<DeletePatientHandler, DeletePatientResult>(new { PatientID = id });
             return RedirectToAction("Index", "Patient");
         }
     }

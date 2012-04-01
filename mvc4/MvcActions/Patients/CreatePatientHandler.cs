@@ -12,7 +12,7 @@ namespace MvcActions.Patients
         public Patient Patient { get; set; }
     }
 
-    public class CreatePatientResult : ActionResult
+    public class CreatePatientResult : IActionResult
     {
         public int PatientID { get; set; }
     }

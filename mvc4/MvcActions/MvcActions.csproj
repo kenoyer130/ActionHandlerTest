@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionResult.cs" />
     <Compile Include="IActionHandler.cs" />
     <Compile Include="IActionRequest.cs" />
     <Compile Include="IActionResult.cs" />

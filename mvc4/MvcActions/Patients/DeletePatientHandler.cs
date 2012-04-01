@@ -11,7 +11,7 @@ namespace MvcActions.Patients
         public int PatientID { get; set; }
     }
 
-    public class DeletePatientResult : ActionResult
+    public class DeletePatientResult : IActionResult
     {
 
     }

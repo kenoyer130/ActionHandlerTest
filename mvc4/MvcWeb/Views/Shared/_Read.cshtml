@@ -1,8 +1,13 @@
 ﻿@model MvcActions.IActionSingleResult
 
 @{
-    ViewBag.Title = "Read";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    var controller = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();    
 }
-<div><a id='btnUpdate' href='update?id=@Model.ID'>Update</a><a href='Delete?id=@Model.ID'>Delete</a><a href='Index'>Return</a></div>
+
+@{
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Layout.cshtml";   
+}
+<div><a id='btnUpdate' href='@Url.Action("Update", controller)?id=@Model.ID'>Update</a><a href='@Url.Action("Delete", controller)Action?id=@Model.ID'>Delete</a><a href='@Url.Action("", controller)'>Return</a></div>
 @RenderBody()

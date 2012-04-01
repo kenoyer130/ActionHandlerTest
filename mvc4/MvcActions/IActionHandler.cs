@@ -9,6 +9,6 @@ namespace MvcActions
         where T : IActionRequest
         where U : IActionResult
     {
-        U Execute(T actionRequest);
+        U Execute(T actionRequest);        
     }
 }

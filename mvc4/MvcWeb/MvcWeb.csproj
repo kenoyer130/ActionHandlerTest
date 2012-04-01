@@ -124,7 +124,8 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\PatientAPI.cs" />
+    <Compile Include="ActionRepository\HandlerRepository.cs" />
+    <Compile Include="ActionRepository\IHandlerRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientAPIController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
@@ -221,10 +222,6 @@
     <ProjectReference Include="..\MvcActions\MvcActions.csproj">
       <Project>{F2930ED8-75D9-48F1-9EAF-047C2428CB17}</Project>
       <Name>MvcActions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MvcAPI\MvcAPI.csproj">
-      <Project>{B1512453-3DEF-47D1-B2B8-3B4F997CDD3F}</Project>
-      <Name>MvcAPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\MvcDataAccess\MvcDataAccess.csproj">
       <Project>{0496A309-4152-47D0-8076-4C61FD535A00}</Project>

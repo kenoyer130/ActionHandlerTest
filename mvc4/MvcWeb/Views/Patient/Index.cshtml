@@ -10,7 +10,7 @@
 
     function getPatients() {
 
-        $.getJSON('api/PatientAPI', null, function (data) {
+        $.getJSON('@Url.Action("","api/PatientAPI")', null, function (data) {
                    
             var output = "";
             if (data == null)
@@ -20,7 +20,7 @@
 
             for (var i = 0; i < count; i++) {
                 var id = data[i].PatientID;
-                output += output = "<li><a href='Patient/Read?ID=" + id + "'>" + id + "</a> " + data[i].FirstName + " " + data[i].LastName + "<br/>";
+                output += output = "<li><a href='@Url.Action("Read","Patient")?ID=" + id + "'>" + id + "</a> " + data[i].FirstName + " " + data[i].LastName + "<br/>";
             }
 
             $('.grid').html(output);
