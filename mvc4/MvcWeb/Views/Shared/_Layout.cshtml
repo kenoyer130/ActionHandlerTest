@@ -8,12 +8,8 @@
     <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/themes/base/css")" rel="stylesheet" type="text/css" />
     <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Scripts/js")"></script>
 </head>
-<body>
-<p><a href='/'>Home</a><a href='Patient/Create'>Create Patient</a></p>
-    <div style="margin: 15px;">
-        @RenderBody()
-    </div>
-
+<body style="margin: 15px;">
+ @RenderBody()
     <script type="text/javascript">
 
     $.ajaxSetup({

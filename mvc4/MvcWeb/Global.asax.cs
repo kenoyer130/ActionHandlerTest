@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using MvcIOC;
+using System.Diagnostics;
 
 namespace MvcWeb
 {
@@ -21,8 +22,9 @@ namespace MvcWeb
         }
 
         protected void Application_Error(object sender, EventArgs e)  
-{  
-            Exception ex = Server.GetLastError();  
+        {  
+            Exception ex = Server.GetLastError();
+            Debug.WriteLine(ex.Message);
         }
 
         public static void RegisterRoutes(RouteCollection routes)

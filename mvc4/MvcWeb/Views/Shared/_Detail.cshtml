@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "_Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div><a id='btnSave' href='#'>Save</a><a href='Index'>Cancel</a></div>
+@using (Html.BeginForm(ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() + "Action", ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString(), FormMethod.Post, new { id = "formDetails", name = "formDetails" }))
+{
+    @RenderBody()   
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('form input:visible:first').focus()
+
+        $(document).keypress(function (e) {
+            switch (e.keyCode) {
+                case 13:
+                    save();
+                    break;
+            }
+        });
+
+        $("#btnSave").click(function () {
+            save();           
+        });
+    });
+
+    function save() {
+        $('#formDetails').submit();
+    }
+ 
+</script>

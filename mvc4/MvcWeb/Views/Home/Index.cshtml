@@ -1,26 +1,4 @@
-<p class='list'></p>   
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        getPatients();
-    });
-
-    function getPatients() {
-
-        $.getJSON('api/PatientAPI', null, function (data) {
-
-            var output = "";
-
-            var count = data.Patients.length;
-
-            for (var i = 0; i < count; i++) {
-                var id = data.Patients[i].PatientID;
-                output += output = "<li><a href='Patient/Read?patientID="+id+"'>" + id  + "</a> " + data.Patients[i].FirstName + " " + data.Patients[i].LastName + "<br/>";
-            }
-
-            $('.list').html(output);
-        });
-    }  
-
-</script>
+@{
+    ViewBag.Title = "_Layout";
+    Layout = "~/Views/Shared/_Grid.cshtml";
+}

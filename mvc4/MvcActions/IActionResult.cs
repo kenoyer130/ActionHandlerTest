@@ -7,7 +7,11 @@ namespace MvcActions
 {
     public interface IActionResult
     {
-        bool HasError { get; set; }
-        string[] Errors { get; set; }
+        
+    }
+
+    public interface IActionSingleResult : IActionResult
+    {
+        int ID { get; set; }
     }
 }

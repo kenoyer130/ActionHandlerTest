@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{63918852-9E2C-4E40-9C86-0FB9A285B58D}</ProjectGuid>
+    <ProjectGuid>{956FEE5A-86CD-432D-B6E7-492F0C485E1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcIOC</RootNamespace>
-    <AssemblyName>MvcIOC</AssemblyName>
+    <RootNamespace>Templates</RootNamespace>
+    <AssemblyName>Templates</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,18 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator.NinjectAdapter">
-      <HintPath>..\..\lib\ninject\lib\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\..\lib\ninject\lib\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\..\lib\ninject\Ninject.Web.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,15 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KernelInjection.cs" />
-    <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvcDataAccess\MvcDataAccess.csproj">
-      <Project>{0496A309-4152-47D0-8076-4C61FD535A00}</Project>
-      <Name>MvcDataAccess</Name>
-    </ProjectReference>
+    <None Include="Handler.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Handler.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

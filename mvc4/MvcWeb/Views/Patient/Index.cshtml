@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Grid";
+    Layout = "~/Views/Shared/_Grid.cshtml";
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        getPatients();
+    });
+
+    function getPatients() {
+
+        $.getJSON('api/PatientAPI', null, function (data) {
+                   
+            var output = "";
+            if (data == null)
+                return;
+
+            var count = data.length;
+
+            for (var i = 0; i < count; i++) {
+                var id = data[i].PatientID;
+                output += output = "<li><a href='Patient/Read?ID=" + id + "'>" + id + "</a> " + data[i].FirstName + " " + data[i].LastName + "<br/>";
+            }
+
+            $('.grid').html(output);
+        });
+    }  
+</script>

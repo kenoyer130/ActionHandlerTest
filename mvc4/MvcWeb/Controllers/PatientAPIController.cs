@@ -5,39 +5,50 @@ using System.Net.Http;
 using System.Web.Http;
 using MvcActions.Patients;
 using MvcIOC;
-using MvcWeb.Controllers.Patients;
+using MvcAPI;
+using MvcModel;
+
 
 namespace MvcWeb.Controllers
 {
     public class PatientAPIController : ApiController
     {
-        private PatientHelper patientHelper = new PatientHelper();
+        IPatientAPI patientAPI;
+
+        public PatientAPIController()
+        {
+            patientAPI = KernelInjection.GetService<IPatientAPI>();
+        }
 
         // GET /api/values
-        public GetPatientCollectionResult Get()
+        public IEnumerable<Patient> Get()
         {
-            return patientHelper.GetPatientCollectionResult();
+            GetPatientCollectionResult result = patientAPI.GetPatientCollectionResult(new GetPatientCollectionRequest());
+            return result.Patients.AsEnumerable();
         }
 
         // GET /api/values/5
         public GetPatientResult Get(int id)
         {
-            return patientHelper.GetPatientResult(id);
+            return patientAPI.GetPatientResult(new GetPatientRequest {  PatientID = id });
         }
 
         // POST /api/values
-        public void Post(string value)
+        public CreatePatientResult Create(Patient patient)
         {
+            return patientAPI.CreatePatient(new CreatePatientRequest { Patient = patient });
         }
 
         // PUT /api/values/5
-        public void Put(int id, string value)
+        public UpdatePatientResult Update(Patient patient)
         {
+            return patientAPI.UpdatePatient(new UpdatePatientRequest { Patient = patient });
         }
 
         // DELETE /api/values/5
-        public void Delete(int id)
+        public DeletePatientResult Delete(int id)
         {
+            return patientAPI.DeletePatient(new DeletePatientRequest { PatientID = id });
         }
     }
 }

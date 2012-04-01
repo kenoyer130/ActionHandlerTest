@@ -7,5 +7,6 @@ namespace MvcActions
 {
     public interface IActionRequest
     {
+     
     }
 }

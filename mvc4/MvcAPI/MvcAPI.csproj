@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F2930ED8-75D9-48F1-9EAF-047C2428CB17}</ProjectGuid>
+    <ProjectGuid>{B1512453-3DEF-47D1-B2B8-3B4F997CDD3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcActions</RootNamespace>
-    <AssemblyName>MvcActions</AssemblyName>
+    <RootNamespace>MvcAPI</RootNamespace>
+    <AssemblyName>MvcAPI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,29 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionResult.cs" />
-    <Compile Include="IActionHandler.cs" />
-    <Compile Include="IActionRequest.cs" />
-    <Compile Include="IActionResult.cs" />
-    <Compile Include="Patients\DeletePatientHandler.cs" />
-    <Compile Include="Patients\UpdatePatientHandler.cs" />
-    <Compile Include="Patients\CreatePatientHandler.cs" />
-    <Compile Include="Patients\GetPatientCollectionHandler.cs" />
-    <Compile Include="Patients\GetPatientHandler.cs" />
+    <Compile Include="IPatientAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvcDataAccess\MvcDataAccess.csproj">
-      <Project>{0496A309-4152-47D0-8076-4C61FD535A00}</Project>
-      <Name>MvcDataAccess</Name>
+    <ProjectReference Include="..\MvcActions\MvcActions.csproj">
+      <Project>{F2930ED8-75D9-48F1-9EAF-047C2428CB17}</Project>
+      <Name>MvcActions</Name>
     </ProjectReference>
     <ProjectReference Include="..\MvcModel\MvcModel.csproj">
       <Project>{B9ACB8C0-627C-44D8-B4F1-623A5DA8D088}</Project>
       <Name>MvcModel</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

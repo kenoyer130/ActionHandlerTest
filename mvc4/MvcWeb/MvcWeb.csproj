@@ -124,10 +124,10 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\PatientAPI.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientAPIController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
-    <Compile Include="Controllers\Patients\PatientHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,7 +211,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\Patient\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -221,19 +222,33 @@
       <Project>{F2930ED8-75D9-48F1-9EAF-047C2428CB17}</Project>
       <Name>MvcActions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MvcAPI\MvcAPI.csproj">
+      <Project>{B1512453-3DEF-47D1-B2B8-3B4F997CDD3F}</Project>
+      <Name>MvcAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvcDataAccess\MvcDataAccess.csproj">
       <Project>{0496A309-4152-47D0-8076-4C61FD535A00}</Project>
       <Name>MvcDataAccess</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Patient\Create.cshtml" />
+    <ProjectReference Include="..\MvcModel\MvcModel.csproj">
+      <Project>{B9ACB8C0-627C-44D8-B4F1-623A5DA8D088}</Project>
+      <Name>MvcModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Patient\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Patient\Update.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Detail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Patient\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Read.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

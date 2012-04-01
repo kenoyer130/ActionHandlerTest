@@ -1,19 +1,28 @@
 ﻿@model MvcActions.Patients.GetPatientResult
-
 @{
     ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Detail.cshtml";
 }
-
-<p><a href='Patient/Update'>Update</a><a href='Patient/Delete'>Delete</a></p>
-    <p>Patient ID : @Html.EditorFor(model => model.Patient.PatientID) </p>
-    <p>First Name : @Html.EditorFor(model => model.Patient.FirstName)</p>
-    <p>Last Name : @Html.EditorFor(model => model.Patient.LastName)</p>
-    <input type='button' value='update' />
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-    });       
-
-</script>
+<fieldset>
+    @Html.HiddenFor(model => model.Patient.PatientID)
+   <div class="editor-label">
+        @Html.LabelFor(model => model.Patient.PatientID)
+    </div>
+    <div class="editor-label">
+        @Html.DisplayFor(model => model.Patient.PatientID)       
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Patient.FirstName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Patient.FirstName)
+        @Html.ValidationMessageFor(model => model.Patient.FirstName)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Patient.LastName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Patient.LastName)
+        @Html.ValidationMessageFor(model => model.Patient.LastName)
+    </div>
+</fieldset>

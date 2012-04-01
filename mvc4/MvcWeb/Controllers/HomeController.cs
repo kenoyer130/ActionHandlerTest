@@ -10,7 +10,7 @@ namespace MvcWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("index","Patient");
         }
     }
 }

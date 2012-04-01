@@ -1,5 +1,21 @@
-﻿@{
+﻿@model MvcActions.Patients.CreatePatientRequest
+@{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Detail.cshtml";
 }
-
-<h2>Create</h2>
+<fieldset>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Patient.FirstName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Patient.FirstName)
+        @Html.ValidationMessageFor(model => model.Patient.FirstName)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Patient.LastName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Patient.LastName)
+        @Html.ValidationMessageFor(model => model.Patient.LastName)
+    </div>
+</fieldset>

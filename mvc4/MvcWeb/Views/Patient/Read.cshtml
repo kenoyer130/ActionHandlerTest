@@ -2,17 +2,9 @@
 
 @{
     ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Read.cshtml";
 }   
 
-<p><a href='Patient/Update?patientID=@Model.Patient.PatientID'>Update</a><a href='Patient/Delete?patientID=@Model.Patient.PatientID'>Delete</a></p>
     <p>Patient ID : @Model.Patient.PatientID </p>
     <p>First Name : @Model.Patient.FirstName</p>
     <p>Last Name : @Model.Patient.LastName</p>
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-       
-    });       
-
-</script>

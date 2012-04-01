@@ -1,0 +1,8 @@
+﻿@model MvcActions.IActionSingleResult
+
+@{
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div><a id='btnUpdate' href='update?id=@Model.ID'>Update</a><a href='Delete?id=@Model.ID'>Delete</a><a href='Index'>Return</a></div>
+@RenderBody()

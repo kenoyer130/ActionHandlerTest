@@ -1,0 +1,43 @@
+﻿<#@ template language="C#" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MvcDataAccess; 
+
+namespace MvcActions.<#= model #>
+{
+    public class <#= handler #>Request : IActionRequest
+    {
+       
+    }
+
+	public class <#= handler #>Result : ActionResult
+    {
+        
+    }
+
+	public class <#= handler #>Handler : IActionHandler<<#= handler #>Request, <#= handler #>Result>
+    {
+        I<#= model #>DataAccess <#= modelLower #>DataAccess;
+
+        public <#= handler #>Handler(I<#= model #>DataAccess <#= modelLower #>DataAccess)
+        {
+            this.<#= modelLower #>DataAccess = <#= modelLower #>DataAccess;
+        }
+
+        public <#= handler #>Result Execute(<#= handler #>Request actionRequest)
+        {
+            return new <#= handler #>Result {  };
+        }
+    }
+}
+
+<#+
+string model = "Patient";
+string modelLower = "patient";
+string handler = "DeletePatient";
+#>
+
+
