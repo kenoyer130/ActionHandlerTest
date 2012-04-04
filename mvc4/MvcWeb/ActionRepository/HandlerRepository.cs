@@ -51,9 +51,9 @@ namespace MvcWeb.ActionRepository
                     if (param.Name == prop.Name)
                     {
                         // map the property values across
-                        if (param.GetType().ToString() != prop.GetType().ToString())
-                            throw new ArgumentException(string.Format("Parameter {0} was of type {1} when type {2} expected.", param.Name, param.GetType(), prop.GetType()));
-
+                        if (param.GetType().ToString() != proptype.ToString())
+                            throw new ArgumentException(string.Format("Parameter {0} was of type {1} when type {2} expected.", param.Name, param.GetType(), proptype));
+                        
                         prop.SetValue(actionRequest, param.GetValue(parameters, null), null);
                         found = true;
                     }

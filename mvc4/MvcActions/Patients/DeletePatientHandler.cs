@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MvcDataAccess;
+using MvcDataAccess.Patients;
 
 namespace MvcActions.Patients
 {
@@ -18,16 +19,16 @@ namespace MvcActions.Patients
 
     public class DeletePatientHandler : IActionHandler<DeletePatientRequest, DeletePatientResult>
     {
-        IPatientDataAccess patientDataAccess;
+        IDataAccessRepository patientDataAccess;
 
-        public DeletePatientHandler(IPatientDataAccess patientDataAccess)
+        public DeletePatientHandler(IDataAccessRepository patientDataAccess)
         {
             this.patientDataAccess = patientDataAccess;
         }
 
         public DeletePatientResult Execute(DeletePatientRequest actionRequest)
         {
-            patientDataAccess.DeletePatient(actionRequest.PatientID);
+            patientDataAccess.Execute<DeletePatientDataAccess>(new { patientID = actionRequest.PatientID } );
             return new DeletePatientResult();
         }
     }

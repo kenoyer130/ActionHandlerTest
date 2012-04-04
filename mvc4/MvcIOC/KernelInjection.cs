@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Ninject.Extensions.Conventions;
 using Ninject;
-using MvcDataAccess;
-using MvcWeb.ActionRepository;
 
 namespace MvcIOC
 {
@@ -18,7 +17,6 @@ namespace MvcIOC
                 return kernel;
 
             kernel = new StandardKernel();
-
             bindKernel();
 
             return kernel;
@@ -31,9 +29,10 @@ namespace MvcIOC
 
         private static void bindKernel()
         {
-            kernel.Bind<IConnectionInformation>().To<ConnectionInformation>();
-            kernel.Bind<IPatientDataAccess>().To<PatientDataAccess>();
-            kernel.Bind<IHandlerRepository>().To<HandlerRepository>(); 
+            kernel.Bind(x => x
+            .From("MvcWeb", "MvcDataAccess", "MvcActions")
+            .SelectAllClasses()
+            .BindAllInterfaces());
         }
     }
 }

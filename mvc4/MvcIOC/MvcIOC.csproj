@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0496A309-4152-47D0-8076-4C61FD535A00}</ProjectGuid>
+    <ProjectGuid>{E1C7F91A-D113-4145-97FA-AF1CC0056C24}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcDataAccess</RootNamespace>
-    <AssemblyName>MvcDataAccess</AssemblyName>
+    <RootNamespace>MvcIOC</RootNamespace>
+    <AssemblyName>MvcIOC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator.NinjectAdapter">
+      <HintPath>..\..\lib\Ninject.Extensions.Conventions\lib\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\lib\Ninject.Extensions.Conventions\lib\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\..\lib\Ninject.Extensions.Conventions\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,28 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionInformation.cs" />
-    <Compile Include="Dapper\SqlMapper.cs" />
-    <Compile Include="DataAccessRepository.cs" />
-    <Compile Include="IDataAccessRepository.cs" />
-    <Compile Include="Patients\CreatePatientDataAccess.cs" />
-    <Compile Include="Patients\DeletePatientDataAccess.cs" />
-    <Compile Include="Patients\GetPatientCollectionDataAccess.cs" />
-    <Compile Include="Patients\GetPatientDataAccess.cs" />
-    <Compile Include="IConnectionInformation.cs" />
-    <Compile Include="Patients\UpdatePatientDataAccess.cs" />
+    <Compile Include="KernelInjection.cs" />
+    <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\MvcIOC\MvcIOC.csproj">
-      <Project>{E1C7F91A-D113-4145-97FA-AF1CC0056C24}</Project>
-      <Name>MvcIOC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MvcModel\MvcModel.csproj">
-      <Project>{B9ACB8C0-627C-44D8-B4F1-623A5DA8D088}</Project>
-      <Name>MvcModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

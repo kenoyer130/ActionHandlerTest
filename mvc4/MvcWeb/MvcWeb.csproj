@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator.NinjectAdapter">
+      <HintPath>..\..\lib\Ninject.Extensions.Conventions\lib\extensions\CommonServiceLocator.NinjectAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\net40\EntityFramework.dll</HintPath>
@@ -46,8 +49,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\..\lib\ninject\lib\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Ninject.Extensions.Conventions\lib\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\..\lib\Ninject.Extensions.Conventions\Ninject.Extensions.Conventions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -132,8 +139,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IOC\KernelInjection.cs" />
-    <Compile Include="IOC\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +231,10 @@
     <ProjectReference Include="..\MvcDataAccess\MvcDataAccess.csproj">
       <Project>{0496A309-4152-47D0-8076-4C61FD535A00}</Project>
       <Name>MvcDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcIOC\MvcIOC.csproj">
+      <Project>{E1C7F91A-D113-4145-97FA-AF1CC0056C24}</Project>
+      <Name>MvcIOC</Name>
     </ProjectReference>
     <ProjectReference Include="..\MvcModel\MvcModel.csproj">
       <Project>{B9ACB8C0-627C-44D8-B4F1-623A5DA8D088}</Project>

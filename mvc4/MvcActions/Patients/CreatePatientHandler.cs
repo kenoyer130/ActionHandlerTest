@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MvcDataAccess;
 using MvcModel;
+using MvcDataAccess.Patients;
 
 namespace MvcActions.Patients
 {
@@ -19,16 +20,16 @@ namespace MvcActions.Patients
 
     public class CreatePatientHandler : IActionHandler<CreatePatientRequest, CreatePatientResult>
     {
-        IPatientDataAccess patientDataAccess;
+        IDataAccessRepository patientDataAccess;
 
-        public CreatePatientHandler(IPatientDataAccess patientDataAccess)
+        public CreatePatientHandler(IDataAccessRepository patientDataAccess)
         {
             this.patientDataAccess = patientDataAccess;
         }
 
         public CreatePatientResult Execute(CreatePatientRequest actionRequest)
         {
-            return new CreatePatientResult { PatientID = patientDataAccess.CreatePatient(actionRequest.Patient) };
+            return new CreatePatientResult { PatientID = patientDataAccess.Execute<CreatePatientDataAccess, int>(new {patient = actionRequest.Patient})};
         }
     }
 }
