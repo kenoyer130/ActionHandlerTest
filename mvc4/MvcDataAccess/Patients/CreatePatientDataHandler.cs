@@ -9,11 +9,11 @@ using MvcIOC;
 
 namespace MvcDataAccess.Patients
 {
-    public class CreatePatientDataAccess {
-
+    public class CreatePatientDataHandler : IDataHandler
+    {
         IConnectionInformation conn;
 
-        public CreatePatientDataAccess(IConnectionInformation conn)
+        public CreatePatientDataHandler()
         {
             conn = KernelInjection.GetService<IConnectionInformation>();
         }

@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="ConnectionInformation.cs" />
     <Compile Include="Dapper\SqlMapper.cs" />
-    <Compile Include="DataAccessRepository.cs" />
-    <Compile Include="IDataAccessRepository.cs" />
-    <Compile Include="Patients\CreatePatientDataAccess.cs" />
+    <Compile Include="IDataHandler.cs" />
+    <Compile Include="MockDataHandler.cs" />
+    <Compile Include="Patients\CreatePatientDataHandler.cs" />
     <Compile Include="Patients\DeletePatientDataAccess.cs" />
     <Compile Include="Patients\GetPatientCollectionDataAccess.cs" />
     <Compile Include="Patients\GetPatientDataAccess.cs" />

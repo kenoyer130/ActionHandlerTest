@@ -5,6 +5,7 @@ using System.Web;
 using MvcDataAccess;
 using MvcModel;
 using MvcDataAccess.Patients;
+using MvcWeb.ActionRepository;
 
 namespace MvcActions.Patients
 {
@@ -22,9 +23,9 @@ namespace MvcActions.Patients
 
     public class GetPatientHandler : IActionHandler<GetPatientRequest, GetPatientResult>
     {
-        IDataAccessRepository dataAccess;
+        IHandlerRepository dataAccess;
 
-        public GetPatientHandler(IDataAccessRepository dataAccess)
+        public GetPatientHandler(IHandlerRepository dataAccess)
         {
             this.dataAccess = dataAccess;
         }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Ninject.Extensions.Conventions;
 using Ninject;
+using Ninject.Extensions.Conventions;
 
 namespace MvcIOC
 {
@@ -24,7 +22,7 @@ namespace MvcIOC
 
         public static T GetService<T>()
         {
-            return (T)kernel.TryGet(typeof(T));
+            return (T)Get().TryGet(typeof(T));
         }
 
         private static void bindKernel()

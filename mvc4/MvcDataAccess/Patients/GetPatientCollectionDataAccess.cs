@@ -11,7 +11,7 @@ using MvcIOC;
 
 namespace MvcDataAccess.Patients
 {
-    public class GetPatientCollectionDataAccess 
+    public class GetPatientCollectionDataAccess : IDataHandler 
     {
         IConnectionInformation conn;
 

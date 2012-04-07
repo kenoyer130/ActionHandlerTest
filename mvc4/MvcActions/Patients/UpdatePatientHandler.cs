@@ -5,6 +5,7 @@ using System.Text;
 using MvcDataAccess;
 using MvcModel;
 using MvcDataAccess.Patients;
+using MvcWeb.ActionRepository;
 
 namespace MvcActions.Patients
 {
@@ -20,9 +21,9 @@ namespace MvcActions.Patients
 
     public class UpdatePatientHandler : IActionHandler<UpdatePatientRequest, UpdatePatientResult>
     {
-        IDataAccessRepository patientDataAccess;
+        IHandlerRepository patientDataAccess;
 
-        public UpdatePatientHandler(IDataAccessRepository patientDataAccess)
+        public UpdatePatientHandler(IHandlerRepository patientDataAccess)
         {
             this.patientDataAccess = patientDataAccess;
         }

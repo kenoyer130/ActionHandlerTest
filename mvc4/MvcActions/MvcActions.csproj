@@ -44,6 +44,7 @@
     <Compile Include="IActionRequest.cs" />
     <Compile Include="IActionResult.cs" />
     <Compile Include="Patients\DeletePatientHandler.cs" />
+    <Compile Include="Patients\IHandlerRepository.cs" />
     <Compile Include="Patients\UpdatePatientHandler.cs" />
     <Compile Include="Patients\CreatePatientHandler.cs" />
     <Compile Include="Patients\GetPatientCollectionHandler.cs" />
@@ -54,6 +55,10 @@
     <ProjectReference Include="..\MvcDataAccess\MvcDataAccess.csproj">
       <Project>{0496A309-4152-47D0-8076-4C61FD535A00}</Project>
       <Name>MvcDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcIOC\MvcIOC.csproj">
+      <Project>{E1C7F91A-D113-4145-97FA-AF1CC0056C24}</Project>
+      <Name>MvcIOC</Name>
     </ProjectReference>
     <ProjectReference Include="..\MvcModel\MvcModel.csproj">
       <Project>{B9ACB8C0-627C-44D8-B4F1-623A5DA8D088}</Project>

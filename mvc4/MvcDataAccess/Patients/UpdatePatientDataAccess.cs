@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MvcModel;
 using System.Data.SqlClient;
+using System.Linq;
 using Dapper;
 using MvcIOC;
+using MvcModel;
 
 namespace MvcDataAccess.Patients
 {
-    public class UpdatePatientDataAccess
+    public class UpdatePatientDataAccess : IDataHandler 
     {
-        IConnectionInformation conn;
+        readonly IConnectionInformation conn;
 
         public UpdatePatientDataAccess()
         {

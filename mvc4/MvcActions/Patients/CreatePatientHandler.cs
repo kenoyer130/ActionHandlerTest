@@ -5,6 +5,7 @@ using System.Text;
 using MvcDataAccess;
 using MvcModel;
 using MvcDataAccess.Patients;
+using MvcWeb.ActionRepository;
 
 namespace MvcActions.Patients
 {
@@ -20,16 +21,16 @@ namespace MvcActions.Patients
 
     public class CreatePatientHandler : IActionHandler<CreatePatientRequest, CreatePatientResult>
     {
-        IDataAccessRepository patientDataAccess;
+        IHandlerRepository patientDataAccess;
 
-        public CreatePatientHandler(IDataAccessRepository patientDataAccess)
+        public CreatePatientHandler(IHandlerRepository patientDataAccess)
         {
             this.patientDataAccess = patientDataAccess;
         }
 
         public CreatePatientResult Execute(CreatePatientRequest actionRequest)
         {
-            return new CreatePatientResult { PatientID = patientDataAccess.Execute<CreatePatientDataAccess, int>(new {patient = actionRequest.Patient})};
+            return new CreatePatientResult { PatientID = patientDataAccess.Execute<CreatePatientDataHandler, int>(new {patient = actionRequest.Patient})};
         }
     }
 }

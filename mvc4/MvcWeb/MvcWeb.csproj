@@ -131,8 +131,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionRepository\HandlerRepository.cs" />
-    <Compile Include="ActionRepository\IHandlerRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientAPIController.cs" />
     <Compile Include="Controllers\PatientController.cs" />

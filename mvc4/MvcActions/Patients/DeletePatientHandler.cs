@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MvcDataAccess;
 using MvcDataAccess.Patients;
+using MvcWeb.ActionRepository;
 
 namespace MvcActions.Patients
 {
@@ -19,9 +20,9 @@ namespace MvcActions.Patients
 
     public class DeletePatientHandler : IActionHandler<DeletePatientRequest, DeletePatientResult>
     {
-        IDataAccessRepository patientDataAccess;
+        IHandlerRepository patientDataAccess;
 
-        public DeletePatientHandler(IDataAccessRepository patientDataAccess)
+        public DeletePatientHandler(IHandlerRepository patientDataAccess)
         {
             this.patientDataAccess = patientDataAccess;
         }

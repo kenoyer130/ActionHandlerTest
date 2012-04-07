@@ -8,7 +8,7 @@ using MvcIOC;
 
 namespace MvcDataAccess.Patients
 {
-    public class DeletePatientDataAccess
+    public class DeletePatientDataAccess : IDataHandler 
     {
         IConnectionInformation conn;
 
