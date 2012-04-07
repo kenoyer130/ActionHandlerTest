@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace MvcModel
 {
@@ -17,5 +15,19 @@ namespace MvcModel
         [Required]
         [StringLength(50)]
         public string LastName { get; set; }
+
+        public Patient()
+        {
+        }
+
+        public string GetCacheKey()
+        {
+            return GetCacheKey(PatientID);
+        }
+
+        public static string GetCacheKey(int patientID)
+        {
+            return string.Format("patient_{0}", patientID);
+        }
     }
 }

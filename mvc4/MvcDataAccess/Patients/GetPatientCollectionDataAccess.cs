@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Dapper;
-using MvcModel;
-using System.Diagnostics;
 using MvcIOC;
+using MvcModel;
 
 namespace MvcDataAccess.Patients
 {

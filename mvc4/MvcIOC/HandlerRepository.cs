@@ -71,16 +71,16 @@ namespace MvcIOC
         {
             Type handlerType = handler.GetType();
 
-            //string key = handlerType.ToString();
+            string key = handlerType.ToString();
 
-            //if (methodInfos.ContainsKey(key))
-            //   return methodInfos[key];
+            if (methodInfos.ContainsKey(key))
+               return methodInfos[key];
 
             MethodInfo executeMethod = handlerType.GetMethod("Execute");
             if (executeMethod == null)
                 throw new ArgumentException("Handler must have an Execute method.");
 
-            //methodInfos[key] = executeMethod;
+            methodInfos[key] = executeMethod;
 
             return executeMethod;
         }
@@ -147,11 +147,14 @@ namespace MvcIOC
         private object createInstance(Type type, dynamic parameters, PropertyInfo value)
         {
             if (type == typeof(string)) 
-                return value.GetValue(parameters,null) as string;
+                return value.GetValue(parameters, null) as string;
             else if (type == typeof(int))
                 return (int)value.GetValue(parameters, null);
-            else
-                return Activator.CreateInstance(type, value);
+            else{            
+                var newParam = Activator.CreateInstance(type);
+                newParam =  value.GetValue(parameters, null);
+                return newParam;
+            }            
         }
     }
 }

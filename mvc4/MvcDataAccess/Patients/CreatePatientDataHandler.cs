@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
+using System.Linq;
 using Dapper;
-using MvcModel;
 using MvcIOC;
+using MvcModel;
 
 namespace MvcDataAccess.Patients
 {
     public class CreatePatientDataHandler : IDataHandler
     {
         IConnectionInformation conn;
-
+        
         public CreatePatientDataHandler()
         {
             conn = KernelInjection.GetService<IConnectionInformation>();

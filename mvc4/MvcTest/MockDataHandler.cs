@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Linq;
+using MvcDataAccess;
 using MvcModel;
 
-namespace MvcDataAccess
+namespace MvcTest
 {
-    // used for unit testing
     public class MockDataHandler : IDataHandler
     {
         public Patient Execute(int ID, string firstName, string lastName)
         {
             return new Patient()
             {
-                 PatientID = ID,
-                 FirstName = firstName,
-                 LastName = lastName
+                PatientID = ID,
+                FirstName = firstName,
+                LastName = lastName
             };
         }
     }

@@ -48,6 +48,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MockComplexDataHandler.cs" />
+    <Compile Include="MockDataHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HandlerRepositoryTest.cs" />
   </ItemGroup>
