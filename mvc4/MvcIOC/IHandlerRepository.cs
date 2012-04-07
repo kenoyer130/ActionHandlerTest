@@ -1,5 +1,5 @@
 ﻿using System;
-namespace MvcWeb.ActionRepository
+namespace MvcIOC
 {
     public interface IHandlerRepository
     {

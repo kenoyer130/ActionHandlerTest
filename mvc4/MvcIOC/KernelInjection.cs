@@ -28,7 +28,7 @@ namespace MvcIOC
         private static void bindKernel()
         {
             kernel.Bind(x => x
-            .From("MvcWeb", "MvcDataAccess", "MvcActions")
+            .From("MvcIOC", "MvcWeb", "MvcDataAccess", "MvcActions")
             .SelectAllClasses()
             .BindAllInterfaces());
         }

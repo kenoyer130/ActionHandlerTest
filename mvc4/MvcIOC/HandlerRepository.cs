@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MvcWeb.ActionRepository;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace MvcIOC
 {
     public class HandlerRepository : IHandlerRepository     
     {
+        private static readonly ConcurrentDictionary<string, MethodInfo> methodInfos = new ConcurrentDictionary<string, MethodInfo>();
+        private static readonly ConcurrentDictionary<int, ParameterInfo[]> parameterInfo = new ConcurrentDictionary<int, ParameterInfo[]>();
+
         public void Execute<T>(dynamic parameters)
         {
-            Execute<T, Object>(parameters);
+            Execute<T, Object>(parameters);  
         }
 
         public U Execute<T, U>(dynamic parameters)
@@ -21,7 +24,7 @@ namespace MvcIOC
             // get the execute method
             var executeMethod = getExecuteMethod<T>(handler);
 
-            var methodParameters = executeMethod.GetParameters();
+            var methodParameters = getMethodPropertyInfo(executeMethod.GetHashCode(), executeMethod);
 
             List<object> methodInvokeParams = new List<object>();
 
@@ -68,11 +71,30 @@ namespace MvcIOC
         {
             Type handlerType = handler.GetType();
 
+            //string key = handlerType.ToString();
+
+            //if (methodInfos.ContainsKey(key))
+            //   return methodInfos[key];
+
             MethodInfo executeMethod = handlerType.GetMethod("Execute");
             if (executeMethod == null)
                 throw new ArgumentException("Handler must have an Execute method.");
-            
+
+            //methodInfos[key] = executeMethod;
+
             return executeMethod;
+        }
+
+        private ParameterInfo[] getMethodPropertyInfo(int key, MethodInfo methodInfo)
+        {
+            if (parameterInfo.ContainsKey(key))
+                return parameterInfo[key];
+
+            var info = methodInfo.GetParameters();
+
+            parameterInfo[key] = info;
+
+            return info;
         }
 
         private void mapResultProperties(object actionRequest, dynamic parameters, PropertyInfo[] properties)

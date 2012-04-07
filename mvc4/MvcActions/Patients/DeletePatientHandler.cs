@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using MvcDataAccess;
 using MvcDataAccess.Patients;
-using MvcWeb.ActionRepository;
+using MvcIOC;
 
 namespace MvcActions.Patients
 {
