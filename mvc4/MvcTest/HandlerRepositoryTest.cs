@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcIOC;
@@ -54,7 +56,7 @@ namespace MvcTest
             //    stopwatch.Start();
 
             //    for (int i = 0; i < iterations; i++)
-            //    {                    
+            //    {
             //        var patient = handler.Execute<MockDataHandler, Patient>(new { ID = rnd.Next(), firstName = "name", lastName = "lastName" });
             //    }
 

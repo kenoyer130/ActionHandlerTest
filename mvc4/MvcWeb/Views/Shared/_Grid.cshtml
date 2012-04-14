@@ -2,6 +2,18 @@
     ViewBag.Title = "_Grid";
     Layout = "~/Views/Shared/_Layout.cshtml";  
 }
-<div><a href='~/'>Home</a><a href='~/Patient/Create'>Create</a></div>
-<div class='grid'></div>
+<script type="text/javascript">
+    function load(id) {
+        $("#menu").appmenu("add", { id: 'home', text: 'Home', url: '' });
+        $("#menu").appmenu("add", { id: 'create', text: 'Create', url: id + '/Create' });
+
+        $("#grid").load({ url: "api/patientapi" });
+    }
+</script>
+<ul id="menu">
+</ul>
+<table id='grid'>    
+    <tbody>
+    </tbody>
+</table>
 @RenderBody()

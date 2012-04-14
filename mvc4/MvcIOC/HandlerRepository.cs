@@ -6,14 +6,14 @@ using System.Collections.Concurrent;
 
 namespace MvcIOC
 {
-    public class HandlerRepository : IHandlerRepository     
+    public class HandlerRepository : IHandlerRepository
     {
         private static readonly ConcurrentDictionary<string, MethodInfo> methodInfos = new ConcurrentDictionary<string, MethodInfo>();
         private static readonly ConcurrentDictionary<int, ParameterInfo[]> parameterInfo = new ConcurrentDictionary<int, ParameterInfo[]>();
 
         public void Execute<T>(dynamic parameters)
         {
-            Execute<T, Object>(parameters);  
+            Execute<T, Object>(parameters);
         }
 
         public U Execute<T, U>(dynamic parameters)
@@ -37,7 +37,7 @@ namespace MvcIOC
             }
 
             // execute handler and return results
-            return (U)executeMethod.Invoke(handler, methodInvokeParams.ToArray());           
+            return (U)executeMethod.Invoke(handler, methodInvokeParams.ToArray());
         }
 
         public U Get<T, U>(dynamic parameters)
@@ -47,8 +47,8 @@ namespace MvcIOC
 
             // get the execute method
             var executeMethod = getExecuteMethod<T>(handler);
-           
-            var actionRequestType = executeMethod.GetParameters()[0].ParameterType;
+
+            var actionRequestType = getMethodPropertyInfo(executeMethod.GetHashCode(), executeMethod)[0].ParameterType;
 
             var actionRequest = Activator.CreateInstance(actionRequestType);
 
@@ -56,12 +56,12 @@ namespace MvcIOC
                 mapResultProperties(actionRequest, parameters, actionRequestType.GetProperties());
 
             // execute handler and return results
-            return (U) executeMethod.Invoke(handler, new object[] { actionRequest });
+            return (U)executeMethod.Invoke(handler, new object[] { actionRequest });
         }
 
         private T getHandler<T>()
         {
-            var handler =  KernelInjection.GetService<T>();
+            var handler = KernelInjection.GetService<T>();
             if (handler == null)
                 throw new ArgumentException("Handler did not resolve");
             return handler;
@@ -74,7 +74,7 @@ namespace MvcIOC
             string key = handlerType.ToString();
 
             if (methodInfos.ContainsKey(key))
-               return methodInfos[key];
+                return methodInfos[key];
 
             MethodInfo executeMethod = handlerType.GetMethod("Execute");
             if (executeMethod == null)
@@ -113,7 +113,7 @@ namespace MvcIOC
                         // map the property values across
                         if (param.GetType().ToString() != proptype.ToString())
                             throw new ArgumentException(string.Format("Parameter {0} was of type {1} when type {2} expected.", param.Name, param.GetType(), proptype));
-                         
+
                         prop.SetValue(actionRequest, param.GetValue(parameters, null), null);
                         found = true;
                     }
@@ -136,7 +136,7 @@ namespace MvcIOC
                     if (param.PropertyType != methodProp.ParameterType)
                         throw new ArgumentException(string.Format("Parameter {0} was of type {1} when type {2} expected.", param.Name, param.ParameterType, methodProp.ParameterType));
 
-                    var newParam = createInstance(param.PropertyType,parameters, param);
+                    var newParam = createInstance(param.PropertyType, parameters, param);
                     return newParam;
                 }
             }
@@ -146,15 +146,16 @@ namespace MvcIOC
 
         private object createInstance(Type type, dynamic parameters, PropertyInfo value)
         {
-            if (type == typeof(string)) 
+            if (type == typeof(string))
                 return value.GetValue(parameters, null) as string;
             else if (type == typeof(int))
                 return (int)value.GetValue(parameters, null);
-            else{            
+            else
+            {
                 var newParam = Activator.CreateInstance(type);
-                newParam =  value.GetValue(parameters, null);
+                newParam = value.GetValue(parameters, null);
                 return newParam;
-            }            
+            }
         }
     }
 }
