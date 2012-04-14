@@ -2,9 +2,35 @@
     ViewBag.Title = "Grid";
     Layout = "~/Views/Shared/_Grid.cshtml";
 }
+<table id='grid'>
+    <thead>
+        <tr>
+            <th id='PatientID' class='patientLink'>
+            </th>
+            <th id='FirstName'>
+                First Name
+            </th>
+            <th id='LastName'>
+                Last Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 <script type="text/javascript">
 
     $(document).ready(function () {
         load("Patient");
+
+        $("#grid").appgrid("addCellRenderer", {
+            id: "patientLink",
+            callback: function (key, data) {
+                debugger;
+                return "<td><a href='read?id=" + data[key] + "'>view</a></td>";
+            }
+        });
+
+        $("#grid").appgrid("load", { url: "api/patientapi" });
     });
 </script>

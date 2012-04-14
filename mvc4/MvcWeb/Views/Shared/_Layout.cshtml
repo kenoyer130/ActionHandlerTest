@@ -11,12 +11,13 @@
     <script type="text/javascript" src="~/Scripts/controls/appgrid.js"></script>
 </head>
 <body style="margin: 15px;">
- @RenderBody()
+    @RenderBody()
     <script type="text/javascript">
 
     var BaseUrl = "@Url.Content("~/");";
     
     $.fn.appmenu({baseUrl : BaseUrl});
+    $.fn.appgrid({baseUrl : BaseUrl});
 
     $.ajaxSetup({
         "error": function (XMLHttpRequest, textStatus, errorThrown) { alert(errorThrown); }

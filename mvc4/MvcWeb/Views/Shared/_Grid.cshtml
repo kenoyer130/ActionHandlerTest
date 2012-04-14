@@ -6,14 +6,8 @@
     function load(id) {
         $("#menu").appmenu("add", { id: 'home', text: 'Home', url: '' });
         $("#menu").appmenu("add", { id: 'create', text: 'Create', url: id + '/Create' });
-
-        $("#grid").load({ url: "api/patientapi" });
     }
 </script>
 <ul id="menu">
 </ul>
-<table id='grid'>    
-    <tbody>
-    </tbody>
-</table>
 @RenderBody()
