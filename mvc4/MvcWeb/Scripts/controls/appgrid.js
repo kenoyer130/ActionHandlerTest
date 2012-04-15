@@ -24,9 +24,8 @@
             if (!this.is("table"))
                 throw exception("you must call this plugin from a table element!");
 
-            // load column headers
-            var headerTH = this.find("th");
-            if (headerTH == null)
+            var thElements = this.find("th");
+            if (thElements == null)
                 throw exception("you need a th element in your table!");
 
             var tbody = this.find("tbody");
@@ -36,11 +35,11 @@
             var header = {}
 
             // loop through and build our column array
-            $.each(headerTH, function (index, headerth) {
-                if (!headerth.attributes["class"]) {
-                    header[headerth.id] = "";
+            $.each(thElements, function (index, thElement) {
+                if (!thElement.attributes["class"]) {
+                    header[thElement.id] = "";
                 } else {
-                    header[headerth.id] = headerth.attributes["class"].value;
+                    header[thElement.id] = thElement.attributes["class"].value.split(' ');
                 }
             });
 
@@ -60,26 +59,43 @@
                     var row = new Array(header.length);
 
                     // map the returned properties to the correct columns
-                    for (key in obj) {
-                        if (!obj.hasOwnProperty(key)) {
-                            continue;
-                        }
-
-                        for (headerkey in header) {
-
-                            if (header[headerkey] in cellRenderers) {
-                                row[headerkey] = cellRenderers[header[headerkey]]({ key: key, obj: obj });
+                    for (headerkey in header) {
+                        for (key in obj) {
+                            if (!obj.hasOwnProperty(key)) {
+                                continue;
                             }
-                            else {
+
+                            if (headerkey != key)
+                                continue;
+
+                            // if no class styles use default renderer
+                            if (header[headerkey].length == 0) {
                                 row[headerkey] = cellRenderers["default"]({ key: key, obj: obj });
+                                continue;
                             }
+
+                            var styleFound;
+
+                            // if the style maps to a cell renderer use that
+                            for (style in header[headerkey]) {
+
+                                if (header[headerkey][style] in cellRenderers) {
+
+                                    row[headerkey] = cellRenderers[header[headerkey][style]]({ key: key, obj: obj });
+                                    styleFound = true;
+                                    break;
+                                }
+                            }
+
+                            if (!styleFound)
+                                row[headerkey] = cellRenderers["default"]({ key: key, obj: obj });
                         }
                     }
 
                     rows.push(row);
                 });
 
-
+                // output our rows
                 for (var i = 0; i < rows.length; i++) {
                     output += "<tr>";
 

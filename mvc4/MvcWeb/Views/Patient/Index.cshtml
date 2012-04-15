@@ -5,7 +5,7 @@
 <table id='grid'>
     <thead>
         <tr>
-            <th id='PatientID' class='patientLink'>
+            <th id='PatientID' class='patientLink style'>
             </th>
             <th id='FirstName'>
                 First Name
@@ -18,16 +18,16 @@
     <tbody>
     </tbody>
 </table>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
-        load("Patient");
+        loadMenu("Patient");
 
         $("#grid").appgrid("addCellRenderer", {
             id: "patientLink",
-            callback: function (key, data) {
-                debugger;
-                return "<td><a href='read?id=" + data[key] + "'>view</a></td>";
+            callback: function (options) {              
+                return "<td><a href='" + BaseUrl + "Patient/read?id=" + options.obj[options.key] + "'>view</a></td>";
             }
         });
 
